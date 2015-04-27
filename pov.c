@@ -14,6 +14,25 @@
 
 
 uint8_t caracteres[] = {0b11111000, 0b10010000, 0b10010000, 0b11111000, 0b00000000, 0b11111000, 0b01000000, 0b00100000, 0b11111000, 0b00000000, 0b10001000, 0b11111000, 0b10001000, 0b00000000, 0b11111000, 0b01000000, 0b00100000, 0b01000000, 0b11111000, 0b00000000, 0b11111000, 0b10010000, 0b10010000, 0b11111000, 0b00000000, 0b11111000, 0b00001000, 0b00001000, 0b00001000};
+/*
+LED
+1 PB0
+...
+8 PB7
+
+9  PC0
+...
+14 PC5
+
+15 PD0
+16 PD1
+17 PD3
+18 PD4
+
+19 PD5
+20 PD6
+21 PD7
+*/
 
 //uint8_t caracteres[] = {0b11111000, 0b10101000, 0b10101000, 0b10001000};
 uint8_t retardo_linea_v;
@@ -27,7 +46,42 @@ int main(void){
     EIMSK |= (1 << INT0);     // activar INT0
     sei();                    // activar interrupciones
 
-    DDRB |= _BV(DDB0); //PB0 como salida
+    DDRB |= _BV(DDB0);
+    DDRB |= _BV(DDB1);
+    DDRB |= _BV(DDB2);
+    DDRB |= _BV(DDB3);
+    DDRB |= _BV(DDB4);
+    DDRB |= _BV(DDB5);
+    DDRB |= _BV(DDB6);
+    DDRB |= _BV(DDB7);
+
+    DDRC |= _BV(DDC0);
+    DDRC |= _BV(DDC1);
+    DDRC |= _BV(DDC2);
+    DDRC |= _BV(DDC3);
+    DDRC |= _BV(DDC4);
+    DDRC |= _BV(DDC5);
+
+    DDRD |= _BV(DDD0);
+    DDRD |= _BV(DDD1);
+    DDRD |= _BV(DDD3);
+    DDRD |= _BV(DDD4);
+    DDRD |= _BV(DDD5);
+    DDRD |= _BV(DDD6);
+    DDRD |= _BV(DDD7);
+    
+    PORTB =  0b11111111;
+    PORTC =  0b11111111;
+    PORTD =  0b11111111;
+    _delay_ms(1000);
+    PORTB =  0;
+    PORTC =  0;
+    PORTD =  0;
+    _delay_ms(1000);
+    PORTB =  0b11111111;
+    PORTC =  0b11111111;
+    PORTD =  0b11111111;
+
     while(1)
     {
     }
